@@ -56,6 +56,7 @@ async def on_message(message):
 @bot.event
 async def on_command_error(context, error):
     if discord.ext.commands.errors.CommandNotFound:
+        raise error
         embed = discord.Embed(
             color=configuration.config.EMBED_COLOUR_STRD,
             description=cogs.eightball.read_context(context)

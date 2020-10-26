@@ -1,8 +1,8 @@
 BOT_PREFIX = ("8ball ")
 
-TOKEN = "NzU3MDgxNDUzODAzODY0MTQ1.X2bNDA._OwFgdaGbZl5R449xxj_crOaUng"
+TOKEN = "NzY4MTkwNTE4MjQwMjE1MDUw.X483Kw._0K9xcXuXKBYuMNOR_oTs8sNcfE"
 
-CLIENT_ID = "757081453803864145"
+CLIENT_ID = "768190518240215050"
 
 STARTUP_COGS = ["cogs.help", "cogs.ping", "cogs.serverinfo"]
 HELP_PICTURE_URL = "https://i.imgur.com/GcJTSfb.png"
