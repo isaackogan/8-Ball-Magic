@@ -1,7 +1,7 @@
 NO_CONTEXT = [
-    "Ask me something, idiot.",
-    "Ask me something you moron.",
-    "Try asking something, dumbass.",
+    "Say something, idiot.",
+    "Say something you moron.",
+    "Try asking something, whore.",
     "Hey dummy! Try asking me something!",
     "Yes, yes I do work, now try asking me something.",
     "You called?",
@@ -20,7 +20,9 @@ NO_CONTEXT = [
     "Type \"8ball help\" for help, if you just wanted me to be here for you, you could use some friends.",
     "I was not created for company, get yourself a Waifu Bot.",
     "Never fear, 8 Bot is here!",
-    "Roses are red, Violets are blue, You didn't ask me anything, So I shall not answer you."
+    "Roses are red, Violets are blue, You didn't ask me anything, So I shall not answer you.",
+    "So, you've lost :flag_white: No :person_gesturing_no_tone1: Nut :peanuts: November :fallen_leaf:. What does that mean :smirk:? It means :smirk: you're weak :baby::eggplant: for you've succumbed to mere :neutral_face::skull: temporary :flushed: carnal pleasure :pray_tone1::exclamation:. You :point_left_tone2: have abandoned :person_gesturing_no: the power :muscle: of self-control for a few seconds :clock1: of ecstasy :stew:, and where does that leave :fallen_leaf: you :point_left:? Alone :bust_in_silhouette:, Abandoned :person_gesturing_no:, Ashamed :pensive::see_no_evil:. Your :point_right: sick :nauseated_face: perversion :thinking: has left :point_left: you :point_left: down :arrow_down: with all :100: the other rotten :fire: peasants :triumph::nerd::point_up: who couldn't stray :raised_hand: from their addiction :biohazard::syringe: for a simple :rage: month :calendar:. You :point_right::scream: could've :chart_with_upwards_trend: joined :u5408: your :point_left: comrades :exclamation::muscle::two_men_holding_hands: in the majestic :raised_hands: gates :construction: of Valhalla as you :point_right: pleasured :heart_eyes: yourself to even :night_with_stars: the most depraved :astonished::dizzy_face: tags :x: in your :point_right: website :desktop::moneybag: of preference :bread:, yet :innocent: here you :point_left::clock12: lie :triumph: defeated :muscle: as your :point_right::zipper_mouth::point_left: comrades :person_running: continue :fast_forward: to fight :punch: strong :muscle::leg: to the urge :eggplant::sweat_drops: of mating :heart::tongue::kiss: whether :cloud_lightning::cloud_rain: it be with a sexual :eggplant: partner :two_women_holding_hands::two_men_holding_hands::couple: or their own extremity. :100:",
+    "Cool story bro. Idiot."
 ]
 
 GAY = [
@@ -262,5 +264,54 @@ WHY = [
 ]
 
 WHO_IS = [
-    "An idiot. That's who."
+    "An idiot. That's who.",
+    "Really stupid,",
+    "A kind of terrible guy.",
+    "A pretty decent dude, not.",
+    "The epitome of stupid.",
+    'Not exactly "well liked" if you catch my drift.',
+    "Kind of an ass.",
+    "Surprisingly good at sports.",
+    "Mildly stupid.",
+    "The embodiment of Nickelback (not a good thing).",
+    "Why, he's me of course."
+
+]
+
+DICE = [
+    '0',
+    '1',
+    'Too',
+    'Twee',
+    '2+2',
+    '5',
+    '3²-3',
+    '7eleven',
+    'M8',
+    'NEIN NEIN NEIN',
+    'Top 10 Idiots who have USED this feature',
+    '11seven',
+    'High Noon',
+    '13 reasons why',
+    '7 but twice',
+    'Number 15, Burger King Foot Lettuce',
+    'Sexteen, wait no',
+    '17',
+    '118-10²',
+    '9+10',
+    'Critical 20'
+]
+
+SUGGESTION_REPLIES = [
+    "Aww yeah baby",
+    "good stuff",
+    "keep 'er coming",
+    "lol penis",
+    "69420",
+    "thanks bro",
+    "will check it out",
+    "bobs and vagane",
+    "you're the best",
+    "ctrl alt yeet",
+    "fuckfuckfuckfuck"
 ]

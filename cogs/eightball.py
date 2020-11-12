@@ -8,7 +8,6 @@ def no_context():
 
 def in_message(message, start, stop, string):
     message = message.lower()
-    print(f'"{message}"')
     if message[start:stop] == string:
         return True
     else:
@@ -20,6 +19,8 @@ def get_response(response_list):
 
 
 def read_context(context):
+    print(f'"{context.message.content}" ran by {context.author} in "{context.guild}" ({context.guild.id})')
+
     message = context.message.content
 
     is_question = "?" in message

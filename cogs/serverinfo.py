@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import configuration.config
+from time import strftime
 
 
 class ServerInfo(commands.Cog, name="serverinfo"):
@@ -34,15 +35,19 @@ class ServerInfo(commands.Cog, name="serverinfo"):
         time = time[0]
 
         embed = discord.Embed(
-            title=f"{server}",
-            color=configuration.config.EMBED_COLOUR_STRD
+            title=f"Server - {server}",
+            color=0x202529
         )
         embed.set_thumbnail(
             url=server.icon_url
         )
         embed.add_field(
-            name="Server Owner",
+            name="Owner",
             value=f"<@{server.owner_id}>",
+        )
+        embed.add_field(
+            name="Creation Date",
+            value=f"`{time}`",
         )
         embed.add_field(
             name="Member Count",
@@ -55,13 +60,13 @@ class ServerInfo(commands.Cog, name="serverinfo"):
             inline=False
         )
         embed.add_field(
-            name="Date ",
-            value=f"`{time}`",
-        )
-        embed.add_field(
             name=f"Roles (Server Total: {role_length})",
             value=roles,
             inline=False
+        )
+        embed.set_footer(
+            text=f"Server: {context.message.guild.name} - {strftime('%D | %I:%M %p (EST)')}",
+            icon_url=context.message.guild.icon_url
         )
         await context.send(embed=embed)
 

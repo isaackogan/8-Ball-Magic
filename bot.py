@@ -19,9 +19,9 @@ async def on_ready():
 
 async def status_task():
     while True:
-        await bot.change_presence(activity=discord.Game("with her feelings..."))
+        await bot.change_presence(activity=discord.Game("Ask me a question!"))
         await asyncio.sleep(60)
-        await bot.change_presence(activity=discord.Game("Fallen#2581"))
+        await bot.change_presence(activity=discord.Game("🤬🤬🤬🤬"))
         await asyncio.sleep(60)
 
 
@@ -46,7 +46,7 @@ async def on_message(message):
         if message.content == configuration.config.BOT_PREFIX[:-1]:
             embed = discord.Embed(
                 color=configuration.config.EMBED_COLOUR_STRD,
-                description=cogs.eightball.no_context()
+                description=cogs.eightball.no_context() + " Ask a question starting with **8ball** and ending with **?**."
             )
             await message.channel.send(embed=embed)
         else:
@@ -56,13 +56,14 @@ async def on_message(message):
 @bot.event
 async def on_command_error(context, error):
     if discord.ext.commands.errors.CommandNotFound:
-        raise error
         embed = discord.Embed(
             color=configuration.config.EMBED_COLOUR_STRD,
             description=cogs.eightball.read_context(context)
         )
         await context.send(embed=embed)
-
+        # raise error
+    elif discord.ext.commands.errors.MissingPermissions or discord.ext.commands.errors.BotMissingPermissions:
+        await context.send("**Error: Missing Permissions** :x:")
     else:
         raise error
 

@@ -10,7 +10,6 @@ class Ping(commands.Cog, name="ping"):
 
     @commands.command(name="ping")
     async def ping(self, context):
-        print(context)
         message = await context.send(f"{configuration.config.SEARCHING_EMOJI} **Bot's Ping** :mag_right: `Loading...`")
         await asyncio.sleep(3)
         await message.edit(
