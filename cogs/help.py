@@ -25,16 +25,17 @@ class Help(commands.Cog, name="help"):
 
         # Note that commands made only for the owner of the bot are not listed here.
         embed = discord.Embed(
-            title=":robot:  BOT HELP » INFORMATION",
+            title=":robot:  BOT HELP » INFORMATION ",
             color=0x202529,
-            description=f"_ _\nAsk a question starting with **{configuration.config.BOT_PREFIX[:-1]}** and ending with **?**.\n\n" + commands_list + "\n_ _"
+            description=f"_ _\nTo use me, ask a question starting with **{configuration.config.BOT_PREFIX[:-1]}** and ending with **?**.\n\n" + commands_list + "\nConfused? Join the [**support discord**](https://discord.gg/vHE7yJM6fm) for help, to chat, or be stupid.\n\n_ _"
         )
         embed.set_thumbnail(
             url=self.bot.user.avatar_url
         )
         embed.set_footer(
-            text=f"Server: {context.message.guild.name} - {strftime('%D | %I:%M %p (EST)')}",
+            text=f"Server: {context.message.guild.name} - {strftime('%D | %I:%M %p (UTC)')}",
             icon_url=context.message.guild.icon_url
+
         )
         await context.send(embed=embed)
 

@@ -56,9 +56,10 @@ GAY = [
 
 LESS_NO = [
     "That's not a question.",
-    "You call that a question? < THIS is a question.",
+    "You call that a question? <- THAT is a question.",
     "This ain't no question mate.",
     "I honestly couldn't care less.",
+    "I'd like to hit you with a pan",
     "Please step away from the computer and tell that to someone that gives a shit.",
     "Just so you know, they're watching every question you make, every grammar mistake, every retarded question, as you keep trying to see what would I answer if you just didn't ask anything worthwhile.",
     "ERROR: Question not found.",
@@ -81,7 +82,8 @@ LESS_YES = [
     "QUESTION ME YOU FILTHY ANIMAL",
     "What do you and a banana have in common? Both can't ask questions.",
     "English modahfuckah, do you speak it?",
-    "You should ask that bitch Alexa."
+    "You should ask that bitch Alexa.",
+    "Ask that fucker Bixby. You know, Siri's cousin twice removed."
 ]
 
 MORE_NO = [

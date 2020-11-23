@@ -65,7 +65,7 @@ class ServerInfo(commands.Cog, name="serverinfo"):
             inline=False
         )
         embed.set_footer(
-            text=f"Server: {context.message.guild.name} - {strftime('%D | %I:%M %p (EST)')}",
+            text=f"Server: {context.message.guild.name} - {strftime('%D | %I:%M %p (UTC)')}",
             icon_url=context.message.guild.icon_url
         )
         await context.send(embed=embed)

@@ -15,6 +15,8 @@ async def on_ready():
     print(f"Discord.py API version: {discord.__version__}")
     print(f"Python version: {platform.python_version()}")
     print(f"Running on: {platform.system()} {platform.release()} ({os.name})")
+    print("change this part")
+    print("-------------------")
 
 
 async def status_task():
@@ -46,7 +48,7 @@ async def on_message(message):
         if message.content == configuration.config.BOT_PREFIX[:-1]:
             embed = discord.Embed(
                 color=configuration.config.EMBED_COLOUR_STRD,
-                description=cogs.eightball.no_context() + " Ask a question starting with **8ball** and ending with **?**."
+                description=cogs.eightball.no_context()
             )
             await message.channel.send(embed=embed)
         else:

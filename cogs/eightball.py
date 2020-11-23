@@ -1,5 +1,6 @@
 import configuration.responses as responses
 import random
+from time import strftime
 
 
 def no_context():
@@ -19,7 +20,8 @@ def get_response(response_list):
 
 
 def read_context(context):
-    print(f'"{context.message.content}" ran by {context.author} in "{context.guild}" ({context.guild.id})')
+    print(
+        f'{strftime("%D %I:%M %p (UTC)")} "{context.message.content}" ran by {context.author} in "{context.guild}" ({context.guild.id})')
 
     message = context.message.content
 
@@ -42,7 +44,7 @@ def read_context(context):
         return get_response(responses.LESS_NO)
 
     elif valid_length and not is_question:
-        return get_response(responses.MORE_NO)
+        return get_response(responses.MORE_NO) + '\n\n`End your question question with "?"`'
 
     elif valid_length and is_question:
         return get_response(responses.RESPONSES)
