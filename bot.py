@@ -45,12 +45,13 @@ async def on_message(message):
     if message.author == bot.user or message.author.bot:
         return
     else:
-        if message.content == configuration.config.BOT_PREFIX[:-1]:
-            embed = discord.Embed(
-                color=configuration.config.EMBED_COLOUR_STRD,
-                description=cogs.eightball.no_context()
-            )
-            await message.channel.send(embed=embed)
+        if message.content:
+            if message.content == configuration.config.BOT_PREFIX[:-1]:
+                embed = discord.Embed(
+                    color=configuration.config.EMBED_COLOUR_STRD,
+                    description=cogs.eightball.no_context()
+                )
+                await message.channel.send(embed=embed)
         else:
             await bot.process_commands(message)
 

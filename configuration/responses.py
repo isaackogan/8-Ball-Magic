@@ -51,7 +51,8 @@ GAY = [
     "Yes, and he's taken, stay away from him.",
     "Not only that but he's also single!",
     "Of course not! He has a boyfriend.",
-    "Just be careful to not drop the soap when you're showering with him."
+    "Just be careful to not drop the soap when you're showering with him.",
+    "Gayer than a unicorn bitchesss"
 ]
 
 LESS_NO = [
@@ -65,7 +66,8 @@ LESS_NO = [
     "ERROR: Question not found.",
     "Nani!?",
     "IDIOT WARNING!!! We got an idiot over here!",
-    "QUESTION ME YOU FILTHY ANIMAL"
+    "QUESTION ME YOU FILTHY ANIMAL",
+    "You have as many brain cells as a drunken toddler..."
 ]
 
 LESS_YES = [
@@ -217,7 +219,8 @@ RESPONSES = [
     "Ah, I see you're an entity of culture as well.",
     "You should ask that bitch Alexa.",
     "You should ask that bitch Cortana.",
-    "You should ask Siri, that slut."
+    "You should ask Siri, that slut.",
+    "Mee6 is a hoe."
 ]
 
 WHY = [
