@@ -1,50 +1,63 @@
-import configuration.responses as responses
-import random
+from configuration.config import PREFIX
+from configuration.responses import *
+from random import choice
 from time import strftime
 
-
-def no_context():
-    return responses.NO_CONTEXT[random.randint(0, len(responses.NO_CONTEXT) - 1)]
+cached_replies = ['8ball why does no one love me?']
 
 
-def in_message(message, start, stop, string):
-    message = message.lower()
-    if message[start:stop] == string:
+class Eightball:
+    def __init__(self, context):
+        self.context = context
+        self.message = self.context.message.content[len(PREFIX + " "):].lower()
+        self.valid_length = len(self.message) >= 15
+        self.is_question = self.message.endswith("?")
+
+    def starts_with(self, clause):
+
+        clause_length = len(clause)
+
+        # Checking if the clause is there at the start
+        if not self.message[:clause_length] == clause:
+            return
+
+        # Checking if the clause was just part of another word
+        if len(self.message) > clause_length and not self.message[clause_length] == " ":
+            return
+
+        # If it passes verification, return True
         return True
-    else:
-        return False
 
+    def get_response(self):
+        print(f'{strftime("%D %I:%M %p (UTC)")} "{self.message}" ran by {self.context.author} in "{self.context.guild}" ({self.context.guild.id})')
+        cached_replies.append(self.message)
 
-def get_response(response_list):
-    return response_list[random.randint(0, len(response_list) - 1)]
+        if self.message == "no context":
+            return choice(NO_CONTEXT)
 
+        elif self.message.replace("?", "") == f"are you gay" or self.message.replace("?", "") == f"you are gay":
+            return "Fuck off, you're gay.", "🖕"
 
-def read_context(context):
-    print(
-        f'{strftime("%D %I:%M %p (UTC)")} "{context.message.content}" ran by {context.author} in "{context.guild}" ({context.guild.id})')
+        elif "gay" in self.message:
+            return choice(GAY), "🏳️‍🌈"
 
-    message = context.message.content
+        elif self.starts_with("who has"):
+            return choice(WHO_HAS)
 
-    is_question = "?" in message
-    valid_length = len(message) >= 15
+        elif self.starts_with("why"):
+            return choice(WHY)
 
-    if in_message(message, 6, 9, "why"):
-        return get_response(responses.WHY)
+        elif self.starts_with("who is"):
+            return choice(WHO_IS)
 
-    elif in_message(message, 6, 12, "who is"):
-        return get_response(responses.WHO_IS)
+        elif self.valid_length and self.is_question:
+            return choice(RESPONSES)
 
-    elif valid_length and "gay" in message:
-        return get_response(responses.GAY)
+        elif self.valid_length and not self.is_question:
+            return choice(MORE_NO) + '\n\n`End your question question with "?"`'
 
-    elif not valid_length and is_question:
-        return get_response(responses.LESS_YES)
+        elif not self.valid_length and self.is_question:
+            return choice(LESS_YES)
 
-    elif not valid_length and not is_question:
-        return get_response(responses.LESS_NO)
-
-    elif valid_length and not is_question:
-        return get_response(responses.MORE_NO) + '\n\n`End your question question with "?"`'
-
-    elif valid_length and is_question:
-        return get_response(responses.RESPONSES)
+        elif not self.valid_length and not self.is_question:
+            return choice(LESS_NO)

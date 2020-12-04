@@ -1,74 +1,128 @@
-import discord, asyncio, os, platform, sys
-from discord.ext.commands import Bot
-from discord.ext import commands
-import configuration.config
-import cogs.eightball
+import discord, os, platform, asyncio
+from discord.ext.commands import AutoShardedBot
+import configuration.config as config
+from discord.utils import find
+from cogs.eightball import Eightball
+from time import strftime
+from cogs.eightball import cached_replies
+from random import choice
 
-bot = Bot(command_prefix=configuration.config.BOT_PREFIX)
+bot = AutoShardedBot(command_prefix=config.PREFIX + " ")
 bot.remove_command("help")
 
 
 @bot.event
 async def on_ready():
     bot.loop.create_task(status_task())
-    print(f"Logged in as {bot.user.name}")
-    print(f"Discord.py API version: {discord.__version__}")
-    print(f"Python version: {platform.python_version()}")
+    bot.loop.create_task(daily_question())
+    print("-" * 40)
+    print(f"Logged in as {bot.user.name}, bot is in {len(bot.guilds)} Guilds!")
+    print(f"Discord.py API version: {discord.__version__} | Python version {platform.python_version()}")
     print(f"Running on: {platform.system()} {platform.release()} ({os.name})")
     print("change this part")
-    print("-------------------")
+    print("-" * 40)
 
 
 async def status_task():
     while True:
         await bot.change_presence(activity=discord.Game("Ask me a question!"))
         await asyncio.sleep(60)
-        await bot.change_presence(activity=discord.Game("🤬🤬🤬🤬"))
+        await bot.change_presence(activity=discord.Game("🦃🦃🦃🦃"))
         await asyncio.sleep(60)
 
 
+async def daily_question():
+    send_channel = bot.get_channel(config.DAILY_POST_CHANNEL)
+
+    while True:
+        await asyncio.sleep(1)
+        if strftime('%I:%M:%S:%p') == "12:00:00:AM":
+            embed = discord.Embed(
+                color=config.EMBED_COLOUR_STRD,
+                description=f"`Today's Reply`\n\n{choice(cached_replies)}"
+            )
+            embed.set_thumbnail(url=bot.user.avatar_url)
+            await send_channel.send(embed=embed)
+            cached_replies.clear()
+
+
+@bot.event
+async def on_guild_join(guild):
+    general = find(lambda x: x.name == 'general', guild.text_channels)
+    if general and general.permissions_for(guild.me).send_messages:
+        await general.send('Hello {}!'.format(guild.name))
+    print(f"Joined guild {guild.name}, total Guilds: {len(bot.guilds)}")
+
+
 if __name__ == "__main__":
-    for extension in configuration.config.STARTUP_COGS:
+    print("-" * 40)
+    for extension in config.STARTUP_COGS:
         try:
             bot.load_extension(extension)
             extension = extension.replace("cogs.", "")
             print(f"Loaded extension '{extension}'")
-        except Exception as e:
-            exception = f"{type(e).__name__}: {e}"
+        except Exception as ex:
+            exception = f"{type(ex).__name__}: {ex}"
             extension = extension.replace("cogs.", "")
             print(f"Failed to load extension {extension}\n{exception}")
+
+    bot_commands = []
+
+    for command in bot.commands:
+        bot_commands.append(f"{command}")
+
+    command_aliases = []
+
+    for command_name in bot_commands:
+        try:
+            command_aliases += AutoShardedBot.get_command(bot, command_name).aliases
+        except:
+            pass
+
+    bot_commands += command_aliases
 
 
 @bot.event
 async def on_message(message):
-    # Ignores if a command is being executed by a bot or by the bot itself
+    # Ignores Bot Messages
     if message.author == bot.user or message.author.bot:
         return
-    else:
-        if message.content:
-            if message.content == configuration.config.BOT_PREFIX[:-1]:
-                embed = discord.Embed(
-                    color=configuration.config.EMBED_COLOUR_STRD,
-                    description=cogs.eightball.no_context()
-                )
-                await message.channel.send(embed=embed)
-        else:
-            await bot.process_commands(message)
+
+    # Ignores non-8Ball messages
+    if not message.content[:len(config.PREFIX)].lower() == config.PREFIX:
+        return
+
+    # If no context is given
+    if message.content == config.PREFIX:
+        message.content = config.PREFIX + " " + "no context"
+
+    await bot.process_commands(message)
 
 
 @bot.event
 async def on_command_error(context, error):
+    # Main 8Ball responses
     if discord.ext.commands.errors.CommandNotFound:
+        current = Eightball(context)
+        response = current.get_response()
+        reaction = None
+
+        if type(response) == tuple:
+            reaction = response[1]
+            response = response[0]
+
         embed = discord.Embed(
-            color=configuration.config.EMBED_COLOUR_STRD,
-            description=cogs.eightball.read_context(context)
+            color=config.EMBED_COLOUR_STRD,
+            description=response
         )
+
         await context.send(embed=embed)
-        # raise error
-    elif discord.ext.commands.errors.MissingPermissions or discord.ext.commands.errors.BotMissingPermissions:
-        await context.send("**Error: Missing Permissions** :x:")
+
+        if reaction: await context.message.add_reaction(reaction)
+
+    # Throws error if not an 8Ball Response
     else:
         raise error
 
 
-bot.run(configuration.config.TOKEN)
+bot.run(config.TOKEN)

@@ -271,7 +271,6 @@ WHY = [
 WHO_IS = [
     "An idiot. That's who.",
     "Really stupid,",
-    "A kind of terrible guy.",
     "A pretty decent dude, not.",
     "The epitome of stupid.",
     'Not exactly "well liked" if you catch my drift.',
@@ -281,6 +280,22 @@ WHO_IS = [
     "The embodiment of Nickelback (not a good thing).",
     "Why, he's me of course."
 
+]
+
+WHO_HAS = [
+    "Probably them.",
+    "You, obviously.",
+    "Literally anyone but them.",
+    "Definitely not that retard.",
+    "Someone, just not you.",
+    "The Donkey from Shrek.",
+    "Fuck this, you're all hoes.",
+    "Eat shit, neither of you.",
+    "Who knows",
+    "Why would you ask an 8Ball Bot?",
+    "The veil is unclear. Fuck off.",
+    "I don't know but, they have the bigger penis.",
+    "Your mom, I asked her last night."
 ]
 
 DICE = [
@@ -319,4 +334,13 @@ SUGGESTION_REPLIES = [
     "you're the best",
     "ctrl alt yeet",
     "fuckfuckfuckfuck"
+]
+
+HELP_MESSAGES = [
+    "help;Displays help UI",
+    "insult;Get insulted (Aliases: `insult me`)",
+    "dice;Roll a 6 sided die (Aliases: `roll`, `roll a die`)",
+    "ping;Displays the Bot's current ping to Discord",
+    "server;Displays info about the server",
+    "suggest <content>;Suggest a custom reply (be specific)"
 ]
