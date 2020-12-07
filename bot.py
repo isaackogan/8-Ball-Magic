@@ -27,7 +27,9 @@ async def status_task():
     while True:
         await bot.change_presence(activity=discord.Game("Ask me a question!"))
         await asyncio.sleep(60)
-        await bot.change_presence(activity=discord.Game("🦃🦃🦃🦃"))
+        await bot.change_presence(activity=discord.Game("🎄🎄🎄🎄"))
+        await asyncio.sleep(60)
+        await bot.change_presence(activity=discord.Game("🕎✡️🕎✡️"))
         await asyncio.sleep(60)
 
 
@@ -36,10 +38,10 @@ async def daily_question():
 
     while True:
         await asyncio.sleep(1)
-        if strftime('%I:%M:%S:%p') == "12:00:00:AM":
+        if strftime('%I:%M:%S:%p') == "05:00:00:PM":
             embed = discord.Embed(
                 color=config.EMBED_COLOUR_STRD,
-                description=f"`Today's Reply`\n\n{choice(cached_replies)}"
+                description=f"`Today's Question`\n\n{choice(cached_replies)}"
             )
             embed.set_thumbnail(url=bot.user.avatar_url)
             await send_channel.send(embed=embed)
@@ -48,10 +50,15 @@ async def daily_question():
 
 @bot.event
 async def on_guild_join(guild):
-    general = find(lambda x: x.name == 'general', guild.text_channels)
+    general = find(lambda x: 'general' in x.name, guild.text_channels)
     if general and general.permissions_for(guild.me).send_messages:
         await general.send('Hello {}!'.format(guild.name))
     print(f"Joined guild {guild.name}, total Guilds: {len(bot.guilds)}")
+
+
+@bot.event
+async def on_guild_leave(guild):
+    print(f"Left guild {guild.name}, total Guilds: {len(bot.guilds)}")
 
 
 if __name__ == "__main__":

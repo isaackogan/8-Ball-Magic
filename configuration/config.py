@@ -1,6 +1,6 @@
 # Bot Setup
 PREFIX = "8ball"
-TOKEN = None
+TOKEN = "NzU3MDgxNDUzODAzODY0MTQ1.X2bNDA.uglIRtfKyt72QdOFBsliZq8G8oY"
 STARTUP_COGS = ["cogs.ping", "cogs.server", "cogs.submissions", "cogs.diceroll", "cogs.help", "cogs.insultme"]
 
 # Settings
