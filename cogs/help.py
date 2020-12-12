@@ -14,19 +14,22 @@ class HelpCommand(commands.Cog, name="HelpCommand"):
 
         # Loading the Command list formatted command list string
         commands_list = ""
-        for item in HELP_MESSAGES:
-            temp_pos = item.find(";")
-            if temp_pos > -1:
-                arg1, arg2 = item[:temp_pos], item[temp_pos + 1:]
-                commands_list += f"• `{config.PREFIX} {arg1}` - {arg2}\n"
-            else:
-                print(f"'{item}' in config.yml was not formatted properly.")
+        for section in HELP_MESSAGES:
+            commands_list += "\n"
+            for item in section:
+                temp_pos = item.find(";")
+                if temp_pos > -1:
+                    arg1, arg2 = item[:temp_pos], item[temp_pos + 1:]
+                    commands_list += f"• `{config.PREFIX} {arg1}` - {arg2}\n"
+                else:
+                    print(f"'{item}' in config.yml was not formatted properly.")
+
 
         # Creating the help embed
         embed = discord.Embed(
             title=":robot:  BOT HELP » INFORMATION ",
             color=0x202529,
-            description=f"_ _\nTo use me, ask a question starting with **{config.PREFIX}** and ending with **?**.\n\n" + commands_list
+            description=f"_ _\nTo use me, ask a question starting with **{config.PREFIX}** and ending with **?**.\n" + commands_list
                         + "\nConfused? Join the [**support discord**](https://discord.gg/vHE7yJM6fm) for help, to chat, or be stupid.\n\n_ _ "
         )
         embed.set_thumbnail(

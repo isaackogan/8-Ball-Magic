@@ -336,11 +336,43 @@ SUGGESTION_REPLIES = [
     "fuckfuckfuckfuck"
 ]
 
-HELP_MESSAGES = [
-    "help;Displays help UI",
-    "insult;Get insulted (Aliases: `insult me`)",
-    "dice;Roll a 6 sided die (Aliases: `roll`, `roll a die`)",
-    "ping;Displays the Bot's current ping to Discord",
-    "server;Displays info about the server",
-    "suggest <content>;Suggest a custom reply (be specific)"
+NINE_BALL = [
+    "https://i.imgur.com/m1GXhpZ.png",
+    "https://i.imgur.com/2ZO7bK8.png",
+    "https://i.imgur.com/9xiGmrM.png",
+    "https://i.imgur.com/MhWkh9H.png",
+    "https://i.imgur.com/3OnhwQv.png",
+    "https://i.imgur.com/mqOozEH.png",
+    "https://i.imgur.com/ADUSUPi.png",
+    "https://i.imgur.com/m9epojd.png",
+    "https://i.imgur.com/O2fzX03.png",
+    "https://i.imgur.com/nZTUA50.png",
+    "https://i.imgur.com/r0XJdTz.png",
+    "https://i.imgur.com/QJ1hjdU.png",
+    "https://i.imgur.com/Vv4lpDR.png"
+
 ]
+
+HELP_MESSAGES = [
+    [
+        "help;Displays this handy help UI",
+        "info;Retrieve information about this Discord Bot!",
+        "invite;Invite the bot to your discord. Please? :)"
+    ], [
+        "vote;Vote for this bot to help support it!",
+        "ping;Displays the Bot's current ping to Discord",
+        "server;Displays info about the server",
+    ], [
+        "suggest <content>;Suggest a custom reply (be specific)",
+        "say <message>; Send as bot (Requires `Manage Messages`)",
+        "poll;Quickly poll a message to the Discord"
+    ], [
+        "insult;Get insulted (Aliases: `insult me`)",
+        "dice;Roll a 6 sided die (Aliases: `roll`, `roll a die`)",
+        "pp size;Check how long your pp is (Alias: `pp`, `ppsize`)",
+        "coin;Flip a coin (Aliases: `flip`, `flip a coin`)",
+        "9ball <message>;Receive an image response instead!"
+    ]
+
+]
+

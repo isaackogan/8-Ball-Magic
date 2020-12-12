@@ -53,10 +53,19 @@ class ReplySubmissions(commands.Cog, name="ReplySubmissions"):
             file = open("./configuration/submissions.txt", "r")
             current = file.read()
 
-            file = open("./configuration/submissions.txt", "w")
-            file.write(current + f'Received "{suggestion}" from {context.author} ({context.author.id})\n')
+            cached_file = open("./configuration/submissions.txt", "w")
 
-            file.close()
+            try: cached_file.write(current + f'Received "{suggestion}" from {context.author} ({context.author.id})\n')
+            except: pass
+
+            cached_file.close()
+
+            cached_file = open("./configuration/submissions.txt", "r")
+            new = cached_file.read()
+
+            if len(new) == 0:
+                cached_file = open("./configuration/submissions.txt", "w")
+                cached_file.write(current)
 
             embed = discord.Embed(
                 description=f"{CHECK_EMOJI} Your reply submission was successfully sent, `{random.choice(SUGGESTION_REPLIES)}`.",

@@ -1,7 +1,7 @@
 # Bot Setup
 PREFIX = "8ball"
 TOKEN = "NzU3MDgxNDUzODAzODY0MTQ1.X2bNDA.uglIRtfKyt72QdOFBsliZq8G8oY"
-STARTUP_COGS = ["cogs.ping", "cogs.server", "cogs.submissions", "cogs.diceroll", "cogs.help", "cogs.insultme"]
+STARTUP_COGS = ["cogs.general", "cogs.server", "cogs.submissions", "cogs.rnggames", "cogs.help", "cogs.insultme"]
 
 # Settings
 CMD_SERVER_ROLE_LIMIT = 15
@@ -18,3 +18,6 @@ SEARCHING_EMOJI = "<a:searching:666724589300350986>"
 ONLINE_EMOJI = "<:online:656613916004319244>"
 CHECK_EMOJI = "<:check:655594481789173790>"
 X_EMOJI = "<:xmark:655594482070454300>"
+HEADS_EMOJI = "<:heads:787214620401074177>"
+TAILS_EMOJI = "<:tails:787214620120973342>"
+NEUTRAL_EMOJI = "<:neutral:655594481634246667>"

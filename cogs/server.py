@@ -49,6 +49,11 @@ class ServerInfo(commands.Cog, name="ServerInfo"):
             inline=False
         )
         embed.add_field(
+            name="Server Region",
+            value=f"`{str(context.guild.region).capitalize()}`",
+            inline=False
+        )
+        embed.add_field(
             name=f"Roles (Server Total: {len(roles)})",
             value=formatted_roles,
             inline=False

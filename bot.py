@@ -6,6 +6,7 @@ from cogs.eightball import Eightball
 from time import strftime
 from cogs.eightball import cached_replies
 from random import choice
+from cogs.eightball import nine_ball
 
 bot = AutoShardedBot(command_prefix=config.PREFIX + " ")
 bot.remove_command("help")
@@ -95,6 +96,10 @@ async def on_message(message):
     if message.author == bot.user or message.author.bot:
         return
 
+    # Separates 9-ball messages
+    if message.content.find("9ball") == 0:
+        await nine_ball(message)
+
     # Ignores non-8Ball messages
     if not message.content[:len(config.PREFIX)].lower() == config.PREFIX:
         return
@@ -112,24 +117,27 @@ async def on_command_error(context, error):
     if discord.ext.commands.errors.CommandNotFound:
         current = Eightball(context)
         response = current.get_response()
-        reaction = None
 
-        if type(response) == tuple:
-            reaction = response[1]
-            response = response[0]
+        response_content = response[0]
+        response_dm_bool = response[1]
+        response_reaction = response[2]
 
         embed = discord.Embed(
             color=config.EMBED_COLOUR_STRD,
-            description=response
+            description=response_content
         )
 
-        await context.send(embed=embed)
+        if response_dm_bool:
+            bot_message = await context.author.send(embed=embed)
+            if response_reaction is not None: await bot_message.add_reaction(response_reaction)
 
-        if reaction: await context.message.add_reaction(reaction)
+        else:
+            await context.send(embed=embed)
+            if response_reaction is not None: await context.message.add_reaction(response_reaction)
 
     # Throws error if not an 8Ball Response
     else:
         raise error
 
-
-bot.run(config.TOKEN)
+token_file = open("bot_token.txt")
+bot.run(token_file.read())
