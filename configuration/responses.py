@@ -371,7 +371,6 @@ HELP_MESSAGES = [
         "dice;Roll a 6 sided die (Aliases: `roll`, `roll a die`)",
         "pp size;Check how long your pp is (Alias: `pp`, `ppsize`)",
         "coin;Flip a coin (Aliases: `flip`, `flip a coin`)",
-        "9ball <message>;Receive an image response instead!"
     ]
 
 ]

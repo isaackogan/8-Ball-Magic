@@ -32,6 +32,8 @@ async def status_task():
         await asyncio.sleep(60)
         await bot.change_presence(activity=discord.Game("🕎✡️🕎✡️"))
         await asyncio.sleep(60)
+        await bot.change_presence(activity=discord.Game("8ball vote"))
+        await asyncio.sleep(60)
 
 
 async def daily_question():

@@ -29,7 +29,7 @@ class HelpCommand(commands.Cog, name="HelpCommand"):
         embed = discord.Embed(
             title=":robot:  BOT HELP » INFORMATION ",
             color=0x202529,
-            description=f"_ _\nTo use me, ask a question starting with **{config.PREFIX}** and ending with **?**.\n" + commands_list
+            description=f"_ _\nTo use me, ask a question starting with **{config.PREFIX}** and ending with **?**.\n" + commands_list + "• `9ball <message>` - Receive an image response instead!\n"
                         + "\nConfused? Join the [**support discord**](https://discord.gg/vHE7yJM6fm) for help, to chat, or be stupid.\n\n_ _ "
         )
         embed.set_thumbnail(
