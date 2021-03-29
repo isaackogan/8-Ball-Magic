@@ -44,7 +44,7 @@ class General(commands.Cog, name="General"):
             title="Invite this bot to your discord server!",
             description="[Click here to invite!](https://discord.com/oauth2/authorize?client_id=757081453803864145&scope=bot&permissions=537259073)"
         )
-        embed.set_image(url="https://i.imgzur.com/dPSAPN2.gif")
+        embed.set_image(url="https://i.imgur.com/dPSAPN2.gif")
         await context.send(embed=embed)
 
     @commands.command()
@@ -53,7 +53,6 @@ class General(commands.Cog, name="General"):
         command_name = inspect.currentframe().f_code.co_name
         command_pos = context.message.content.find(command_name)
         say_message = context.message.content[command_pos + len(command_name + " "):]
-        await self.bot.delete_message(context.message)
 
         embed = discord.Embed(
             color=config.EMBED_COLOUR_STRD,

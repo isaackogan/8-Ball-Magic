@@ -1,7 +1,7 @@
 # Bot Setup
 PREFIX = "8ball"
 TOKEN = "NzU3MDgxNDUzODAzODY0MTQ1.X2bNDA.uglIRtfKyt72QdOFBsliZq8G8oY"
-STARTUP_COGS = ["cogs.general", "cogs.server", "cogs.submissions", "cogs.rnggames", "cogs.help", "cogs.insultme"]
+STARTUP_COGS = ["cogs.general", "cogs.server", "cogs.submissions", "cogs.rnggames", "cogs.help", "cogs.insultme", "cogs.topgg"]
 
 # Settings
 CMD_SERVER_ROLE_LIMIT = 15

@@ -5,6 +5,7 @@ NO_CONTEXT = [
     "Hey dummy! Try asking me something!",
     "Yes, yes I do work, now try asking me something.",
     "You called?",
+    "**SMALL PP ALERT**",
     "Hewwo?",
     "Yes?",
     "uwu",
@@ -111,6 +112,7 @@ MORE_NO = [
 RESPONSES = [
     "Without a doubt.",
     "It is certain.",
+    "Yes, not a doubt in my mind.",
     "It is decidedly so.",
     "Yes, definitely.",
     "You may rely on it.",
@@ -371,6 +373,7 @@ HELP_MESSAGES = [
         "dice;Roll a 6 sided die (Aliases: `roll`, `roll a die`)",
         "pp size;Check how long your pp is (Alias: `pp`, `ppsize`)",
         "coin;Flip a coin (Aliases: `flip`, `flip a coin`)",
+        "9ball <message>;Receive an image response instead!"
     ]
 
 ]
