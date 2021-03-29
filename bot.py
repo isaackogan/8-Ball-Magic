@@ -1,3 +1,5 @@
+import random
+
 import discord, os, platform, asyncio
 from discord.ext.commands import AutoShardedBot
 import configuration.config as config
@@ -7,6 +9,8 @@ from time import strftime
 from cogs.eightball import cached_replies
 from random import choice
 from cogs.eightball import nine_ball
+from os import listdir
+from os.path import isfile, join
 
 bot = AutoShardedBot(command_prefix=config.PREFIX + " ")
 bot.remove_command("help")
@@ -16,32 +20,29 @@ bot.remove_command("help")
 async def on_ready():
     bot.loop.create_task(status_task())
     bot.loop.create_task(daily_question())
+    bot.loop.create_task(hourly_pfp())
     print("-" * 40)
     print(f"Logged in as {bot.user.name}, bot is in {len(bot.guilds)} Guilds!")
     print(f"Discord.py API version: {discord.__version__} | Python version {platform.python_version()}")
     print(f"Running on: {platform.system()} {platform.release()} ({os.name})")
-    print("change this part")
+    print("Successfully loaded the Bot")
     print("-" * 40)
 
 
 async def status_task():
     while True:
-        await bot.change_presence(activity=discord.Game("Ask me a question!"))
-        await asyncio.sleep(60)
-        await bot.change_presence(activity=discord.Game("🎄🎄🎄🎄"))
-        await asyncio.sleep(60)
-        await bot.change_presence(activity=discord.Game("🕎✡️🕎✡️"))
-        await asyncio.sleep(60)
-        await bot.change_presence(activity=discord.Game("8ball vote"))
-        await asyncio.sleep(60)
+        await bot.change_presence(activity=discord.Game("8ball.mineplex.club")), await asyncio.sleep(60)
+        await bot.change_presence(activity=discord.Game("Ask me a question!")), await asyncio.sleep(60)
+        await bot.change_presence(activity=discord.Game("8ball help")), await asyncio.sleep(60)
+        await bot.change_presence(activity=discord.Game("your mum lol")), await asyncio.sleep(60)
 
 
 async def daily_question():
-    send_channel = bot.get_channel(config.DAILY_POST_CHANNEL)
+    send_channel = bot.get_channel(789277593311510548)
 
     while True:
-        await asyncio.sleep(1)
-        if strftime('%I:%M:%S:%p') == "05:00:00:PM":
+        if str(strftime('%I:%M:%p')) == "02:37:AM":
+            print('Posted daily highlight')
             embed = discord.Embed(
                 color=config.EMBED_COLOUR_STRD,
                 description=f"`Today's Question`\n\n{choice(cached_replies)}"
@@ -49,6 +50,26 @@ async def daily_question():
             embed.set_thumbnail(url=bot.user.avatar_url)
             await send_channel.send(embed=embed)
             cached_replies.clear()
+        await asyncio.sleep(60)
+
+
+async def hourly_pfp():
+
+    avatar_path = './configuration/avatars'
+
+    while True:
+        # Get the files from the dir
+        only_files = [f for f in os.listdir(avatar_path) if isfile(join(avatar_path, f))]
+
+        try:
+            # Open file file & change the pfp
+            with open(avatar_path + "/" + random.choice(only_files), 'rb') as image:
+                await bot.user.edit(avatar=image.read())
+        except:
+            pass
+
+        # Wait 1h & 5 seconds
+        await asyncio.sleep((60 * 60) + 5)
 
 
 @bot.event
@@ -140,6 +161,7 @@ async def on_command_error(context, error):
     # Throws error if not an 8Ball Response
     else:
         raise error
+
 
 token_file = open("bot_token.txt")
 bot.run(token_file.read())
