@@ -64,30 +64,6 @@
                 </configuration>
             </plugin>
             <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
-                <configuration>
-                    <source>16</source>
-                    <target>16</target>
-
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>
-                                bot.tricorder.core.Tricorder
-                            </mainClass>
-                        </manifest>
-                    </archive>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>3.2.1</version>
@@ -133,7 +109,7 @@
         <dependency>
             <groupId>com.github.jsixface</groupId>
             <artifactId>yamlconfig</artifactId>
-            <version>1.1</version>
+            <version>1.1.1</version>
         </dependency>
 
         <!-- JDA Framework -->
