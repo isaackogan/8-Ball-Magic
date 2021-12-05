@@ -4,6 +4,7 @@ import bot.eightball.commands.EightBall;
 import bot.eightball.commands.games.eightball.original.StaticResponses;
 import bot.eightball.commands.general.general.Legacy;
 import bot.eightball.commands.general.tasks.AutoHighlight;
+import bot.eightball.commands.general.tasks.BotListing;
 import bot.eightball.commands.general.tasks.RotateStatus;
 import bot.eightball.core.discord.commands.SlashCommand;
 import bot.eightball.core.general.IShop;
@@ -230,7 +231,8 @@ public class MagicBalls extends ListenerAdapter {
         // Auto-Tasks
         final List<IShop.Schedulable> tasks = Arrays.asList(
                 new RotateStatus(),
-                new AutoHighlight()
+                new AutoHighlight(),
+                new BotListing()
         );
 
         startTasks(tasks);

@@ -31,6 +31,8 @@ public class Config {
     public Long SMALL_X_MARK_EMOJI;
     public Long SMALL_NEUTRAL_EMOJI;
 
+    public Long BOT_LISTING_STATS_UPDATE_INTERVAL;
+
     public String STATUS_PATH;
     public Long STATUS_UPDATE_INTERVAL;
 
@@ -39,7 +41,7 @@ public class Config {
     public Long HIGHLIGHT_UPDATE_INTERVAL;
     public Long HIGHLIGHT_GUILD_ID;
     public Long HIGHLIGHT_CHANNEL_ID;
-    
+
     public static Config fromYamlFile(String uri) {
         Gson gson = new Gson();
         String json = FileUtils.yamlToJSON(FileUtils.loadYamlFile(uri));

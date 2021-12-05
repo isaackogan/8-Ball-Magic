@@ -11,6 +11,7 @@ import java.util.Objects;
 public class Tokens {
     public String bot;
     public MySQL mysql;
+    public String topGG;
 
     public static Tokens fromJsonFile(String uri) throws IOException {
         Gson gson = new Gson();
@@ -25,7 +26,6 @@ public class Tokens {
         public String user;
         public String password;
         public String db;
-
-
+        
     }
 }

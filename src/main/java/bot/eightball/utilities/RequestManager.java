@@ -47,6 +47,21 @@ public class RequestManager {
 
     }
 
+    public static int makeRequestCallForCode(Request request) {
+        Call call = requestClient.newCall(request);
+        try {
+            Response response = call.execute();
+            response.close();
+            return response.code();
+
+        } catch (IOException | NullPointerException e) {
+            e.printStackTrace();
+        }
+        return 0;
+
+    }
+
+
     public static CompletableFuture<String> asyncGetRequest(URL url) {
         return CompletableFuture.supplyAsync(() -> {
             Request request = new Request.Builder()
@@ -96,32 +111,33 @@ public class RequestManager {
 
     }
 
-    public static CompletableFuture<String> asyncPostRequest(URL url, String body) {
+    public static CompletableFuture<Integer> asyncPostRequest(URL url, String body, String authentication) {
         String finalBody = body == null ? "" : body;
 
         return CompletableFuture.supplyAsync(() -> {
             Request request = null;
 
             try {
-                request = new Request.Builder()
+                Request.Builder requestBuilder = new Request.Builder()
                         .url(url)
                         .addHeader("Content-Type", "application/json; charset=utf-8")
-                        .post(RequestBody.create(JSON, finalBody))
-                        .build();
+                        .post(RequestBody.create(JSON, finalBody));
+
+                if (authentication != null) {
+                    requestBuilder.addHeader("Authorization", authentication);
+                }
+
+                request = requestBuilder.build();
+
             } catch (Exception e) {
                 e.printStackTrace();
                 return null;
             }
 
-            return makeRequestCall(request);
 
+            return makeRequestCallForCode(request);
 
         });
     }
-
-    public static CompletableFuture<String> asyncPostRequest(URL url) {
-        return asyncPostRequest(url, null);
-    }
-
 
 }
