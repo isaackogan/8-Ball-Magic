@@ -1,0 +1,18 @@
+[
+  {
+    "type": "watching",
+    "name": "%guilds% guilds \uD83D\uDC40"
+  },
+  {
+    "type": "playing",
+    "name": "Zzz... | %guilds% guilds \uD83D\uDCA4"
+  },
+  {
+    "type": "playing",
+    "name": "/help | %members% cuties ❤️"
+  },
+  {
+    "type": "playing",
+    "name": "/help | %members% ppl \uD83E\uDD3A"
+  }
+]
