@@ -14,7 +14,6 @@ public enum Question {
     TOO_SHORT_IS_QUESTION("too_short_is_question", MagicBalls.staticResponses.too_short_is_question, "Too short but have a \"?\"", "Too Short / Has ?"),
     GOOD_LENGTH_NOT_QUESTION("good_length_not_question", MagicBalls.staticResponses.good_length_not_question, "Missing a \"?\" in them", "Good Length / Missing ?"),
     GOOD_LENGTH_IS_QUESTION("good_length_is_question", MagicBalls.staticResponses.good_length_is_question, "Perfect questions!", "Perfect Question");
-
     public final String tableName;
     public final List<String> staticResponses;
     public final String description;

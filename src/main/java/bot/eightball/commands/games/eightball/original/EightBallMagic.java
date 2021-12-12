@@ -79,6 +79,32 @@ public class EightBallMagic extends SlashSubCommand {
 
     }
 
+    public static boolean isMentalHealthQuestion(String testCase) {
+        testCase = testCase.toLowerCase(Locale.ROOT);
+        return MagicBalls.config.SUICIDE_KEYWORDS.stream().anyMatch(testCase::contains);
+    }
+
+    public static EmbedBuilder getSuicideEmbed() {
+        return new EmbedBuilder()
+                .setTitle("Hey, you matter.")
+                .setDescription(
+                        "Nobody experiences perfect mental health all of the time, and you are not alone.\n\n"
+                                + "**Reach out** to someone that you trust who will be able to help you navigate through these difficult times. "
+                                + "The ideal person to reach out to would be someone who makes you feel safe, you may be able to make a list of "
+                                + "adults in your life who you are able to talk to about how you are feeling. If not, please give one of these "
+                                + "help lines just one more chance."
+                )
+                .addField("United States", "Call (800) 273-8255 or Text HOME to 741741", true)
+                .addField("United Kingdom", "Call 116-123 or Text SHOUT to 85258", true)
+                .addField("Canada", "Call (833) 456-4566 or Text 45645", true)
+                .addField("India", "Call +91 80 23655557", true)
+                .addField("Japan", "Call 810352869090", true)
+                .addField("Other Countries?", "[Click Here](https://en.wikipedia.org/wiki/List_of_suicide_crisis_lines)", true)
+                .setColor(MagicBalls.getDefaultEmbedColour(null))
+                .setFooter("Please give the help lines a chance. I know you can make it.", MagicBalls.getEmbedThumbnail(null));
+
+    }
+
     @Override
     public void run(SlashCommandEvent commandEvent) {
         commandEvent.deferReply().queue(success -> {
@@ -91,20 +117,28 @@ public class EightBallMagic extends SlashSubCommand {
                 shortenedQuestion = firstPart + "..." + lastPart;
             }
 
-            Question responses = getMagicResponse(commandEvent.getGuild(), question.toLowerCase(Locale.ROOT));
+            EmbedBuilder embed;
 
-            EmbedBuilder embed = new EmbedBuilder()
-                    .setAuthor("\"" + shortenedQuestion + "\"")
-                    .setDescription("```\n" + responses.allResponses.get(random.nextInt(responses.allResponses.size())) + "\n```")
-                    .setThumbnail(MagicBalls.getEmbedThumbnail(commandEvent.getGuild()))
-                    .setColor(MagicBalls.getDefaultEmbedColour(commandEvent.getGuild()));
+            // Mental Health
+            if (!isMentalHealthQuestion(question.toLowerCase(Locale.ROOT))) {
+                Question responses = getMagicResponse(commandEvent.getGuild(), question.toLowerCase(Locale.ROOT));
 
+                embed = new EmbedBuilder()
+                        .setAuthor("\"" + shortenedQuestion + "\"")
+                        .setThumbnail(MagicBalls.getEmbedThumbnail(commandEvent.getGuild()))
+                        .setColor(MagicBalls.getDefaultEmbedColour(commandEvent.getGuild()))
+                        .setDescription("```\n" + responses.allResponses.get(random.nextInt(responses.allResponses.size())) + "\n```");
 
-            if (responses == Question.TOO_SHORT_NOT_QUESTION || responses == Question.GOOD_LENGTH_NOT_QUESTION) {
-                embed.setFooter("Shouldn't you end questions with a question mark?");
+                if (responses == Question.TOO_SHORT_NOT_QUESTION || responses == Question.GOOD_LENGTH_NOT_QUESTION) {
+                    embed.setFooter("Shouldn't you end questions with a question mark?");
+                }
+
+            } else {
+                embed = getSuicideEmbed();
             }
 
             success.editOriginalEmbeds(embed.build()).queue();
+
         }, failure -> {
         });
 

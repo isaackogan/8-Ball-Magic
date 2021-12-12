@@ -4,6 +4,7 @@ import bot.eightball.utilities.FileUtils;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class Config {
 
@@ -42,6 +43,8 @@ public class Config {
     public Long HIGHLIGHT_GUILD_ID;
     public Long HIGHLIGHT_CHANNEL_ID;
 
+    public List<String> SUICIDE_KEYWORDS;
+    
     public static Config fromYamlFile(String uri) {
         Gson gson = new Gson();
         String json = FileUtils.yamlToJSON(FileUtils.loadYamlFile(uri));
